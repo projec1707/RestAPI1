@@ -13,45 +13,67 @@ enum Link {
     }
 }
 
+enum NetworkError: Error {
+    case noData
+    case tooManyRequests
+    case decodingError
+}
+
 final class NetworkManager: ObservableObject {
     
     init() {}
     
     static let shared = NetworkManager()
     
-    @Published var employees = [Employee]()
+//    @Published var employees = [Employee]()
     
-    func fetchEmployees() {
+    func fetchEmployees(completion: @escaping (Result<[Employee], NetworkError>) -> Void) {
         print("try to fetch")
         
        // let url = URL(string: "https://dummy.restapiexample.com/api/v1/employees")!
         let fetchRequest = URLRequest(url: Link.employees.url)
         
-        URLSession.shared.dataTask(with: fetchRequest) { [weak self] (data, response, error) -> Void in
+        URLSession.shared.dataTask(with: fetchRequest) { (data, response, error) -> Void in
             if error != nil {
                 print("Error is session is not nil")
+                completion(.failure(.noData))
             } else {
                 // We've got data!
                 
                 let httpResponse = response as? HTTPURLResponse
-                print("status code: \(String(describing: httpResponse?.statusCode))")
+                print("status code: \(httpResponse?.statusCode ?? 0)")
                 
-                // проверяем существуют ли вообще данные
-                guard let safeData = data else { return }
-                
-                // попытка декодировать данные
-                if let decodedQuery = try? JSONDecoder().decode(Query.self, from: safeData) {
+                if httpResponse?.statusCode == 429 {
+                    completion(.failure(.tooManyRequests))
+                } else {
+                    // проверяем существуют ли вообще данные
+                    guard let safeData = data else { return }
                     
-                    // тепень нашему Published var employees присваием данные которые
-                    // мы декодировали
-                    
-                    DispatchQueue.main.async { // записываем данные в основном потоке
-                        // так как URLSession.shared.dataTask выполняется в бэкграунде
-                        self?.employees = decodedQuery.data
+                    // ловим ошибки
+                    do {
+                        let decodedQuery = try JSONDecoder().decode(Query.self, from: safeData)
+                        completion(.success(decodedQuery.data))
+                    } catch let decodeError {
+                        print("Decoding error: \(decodeError.localizedDescription)")
+                        completion(.failure(.decodingError))
                     }
                     
                 }
+                
             }
         }.resume()
     }
 }
+//
+// попытка декодировать данные
+//if let decodedQuery = try? JSONDecoder().decode(Query.self, from: safeData) {
+    
+    // тепень нашему Published var employees присваием данные которые
+    // мы декодировали
+    
+ //   DispatchQueue.main.async { // записываем данные в основном потоке
+        // так как URLSession.shared.dataTask выполняется в бэкграунде
+  //      self?.employees = decodedQuery.data
+  //  }
+    
+//}

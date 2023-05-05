@@ -3,7 +3,7 @@
 import Foundation
 
 struct Employee: Decodable, Hashable {
-    var id = UUID()
+    var id: Int
     let employee_name: String
     let employee_salary: Int
 }
@@ -15,7 +15,7 @@ struct Query: Decodable {
 
 extension Employee {
     static let example = Employee(
-      //  id: 1,
+        id: 1,
         employee_name: "Tim Cook",
         employee_salary: 30000)
 }

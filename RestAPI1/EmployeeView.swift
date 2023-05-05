@@ -5,12 +5,12 @@ import SwiftUI
 struct EmployeeView: View {
     @StateObject var networkManager = NetworkManager.shared
     
-  //  @State private var employees = [Employee]()
+    @State private var employees = [Employee]()
   //  @State private var employees = [Employee.example]
     
     var body: some View {
         ZStack {
-            List(networkManager.employees, id: \.self) { employee in
+            List(employees, id: \.self) { employee in
                 VStack {
                     Text("Employee ID\(employee.id)")
                     HStack {
@@ -21,7 +21,15 @@ struct EmployeeView: View {
                 }
             }
             .onAppear {
-                networkManager.fetchEmployees()
+                networkManager.fetchEmployees { result in
+                    switch result {
+                    case .success(let decodedEmployees):
+                        print("success")
+                        employees = decodedEmployees
+                    case .failure(let networkError):
+                        print("failure: \(networkError)")
+                    }
+                }
             }
         }
     }
