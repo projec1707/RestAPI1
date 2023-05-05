@@ -11,6 +11,9 @@
 		F1C9EDB92A04FE1800887D01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C9EDB82A04FE1800887D01 /* ContentView.swift */; };
 		F1C9EDBB2A04FE1A00887D01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1C9EDBA2A04FE1A00887D01 /* Assets.xcassets */; };
 		F1C9EDBF2A04FE1A00887D01 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1C9EDBE2A04FE1A00887D01 /* Preview Assets.xcassets */; };
+		F1C9EDC62A0504B600887D01 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C9EDC52A0504B600887D01 /* Employee.swift */; };
+		F1C9EDC82A050F3300887D01 /* EmployeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C9EDC72A050F3300887D01 /* EmployeeView.swift */; };
+		F1C9EDCA2A05126100887D01 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C9EDC92A05126100887D01 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,9 @@
 		F1C9EDBA2A04FE1A00887D01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1C9EDBC2A04FE1A00887D01 /* RestAPI1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RestAPI1.entitlements; sourceTree = "<group>"; };
 		F1C9EDBE2A04FE1A00887D01 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F1C9EDC52A0504B600887D01 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		F1C9EDC72A050F3300887D01 /* EmployeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeView.swift; sourceTree = "<group>"; };
+		F1C9EDC92A05126100887D01 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,9 @@
 			children = (
 				F1C9EDB62A04FE1800887D01 /* RestAPI1App.swift */,
 				F1C9EDB82A04FE1800887D01 /* ContentView.swift */,
+				F1C9EDC72A050F3300887D01 /* EmployeeView.swift */,
+				F1C9EDC92A05126100887D01 /* NetworkManager.swift */,
+				F1C9EDC52A0504B600887D01 /* Employee.swift */,
 				F1C9EDBA2A04FE1A00887D01 /* Assets.xcassets */,
 				F1C9EDBC2A04FE1A00887D01 /* RestAPI1.entitlements */,
 				F1C9EDBD2A04FE1A00887D01 /* Preview Content */,
@@ -139,7 +148,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1C9EDC82A050F3300887D01 /* EmployeeView.swift in Sources */,
 				F1C9EDB92A04FE1800887D01 /* ContentView.swift in Sources */,
+				F1C9EDCA2A05126100887D01 /* NetworkManager.swift in Sources */,
+				F1C9EDC62A0504B600887D01 /* Employee.swift in Sources */,
 				F1C9EDB72A04FE1800887D01 /* RestAPI1App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

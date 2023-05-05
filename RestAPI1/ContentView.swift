@@ -1,16 +1,28 @@
-
+// https://dummy.restapiexample.com
+// https://rapidapi.com
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            VStack {
+                NavigationLink {
+                    EmployeeView()
+                } label: {
+                    HStack {
+                        Text("Employees")
+                            .font(.headline)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
+                    .padding()
+                    .background(Color.blue.opacity(0.1))
+                }
+                Spacer()
+            }
+            .navigationTitle("Fetching Data")
         }
-        .padding()
     }
 }
 
